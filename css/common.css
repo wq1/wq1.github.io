@@ -1,0 +1,48 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0px auto;
+  padding: 10px;
+  max-width: 960px;
+  min-width: 320px;
+  background-color: #eee8d5;
+  line-height: 150%;
+}
+
+body > header, body > footer, #main, .border {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+}
+
+body > header, body > footer {
+  text-align: center;
+}
+
+/* Flexbox
+body {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction:         column;
+}
+
+body > header {
+  -webkit-order: 1;
+  order:         1;
+}
+
+#main {
+  -webkit-order: 2;
+  order:         2;
+}
+
+body > footer {
+  -webkit-order: 3;
+  order:         3;
+}
+*/
