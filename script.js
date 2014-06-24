@@ -1,4 +1,4 @@
-$("title").append(" | しまだあゆむのホームページ");
+$("title").append(" - しまだあゆむのホームページ");
 $(function() {
   $.get("/header.html", function(data) {
     $("body").prepend(data);
