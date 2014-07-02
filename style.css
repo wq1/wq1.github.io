@@ -16,7 +16,7 @@ body {
 body > header, body > footer, #main, .border {
   margin: 10px;
   padding: 10px;
-  border: 1px solid #cccccc;
+  border: 1px solid #aaaaaa;
 }
 
 body > header, body > footer, article > header {
