@@ -1,0 +1,11 @@
+/*
+.date:after{
+  content: ":";
+}
+.type:before {
+  content: "[";
+}
+.type:after {
+  content: "]";
+}
+*/
