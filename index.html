@@ -5,15 +5,16 @@
     <title>しまだあゆむのホームページ</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      .scr-y {
+      #update {
         overflow-y: scroll;
         height: 150px;
       }
     </style>
+    <link rel="stylesheet" href="update/style.css" />
     <script src="js/jquery.min.js"></script>
     <script>
       $(function() {
-        $("#news").load("update/ #update");
+        $("#update-table").load("update/ #update-tbody");
       });
     </script>
   </head>
@@ -22,18 +23,18 @@
       <h1><a href="/">しまだあゆむのホームページ</a></h1>
     </header>
     <div id="main">
-      <section class="border scr-y">
+      <section id="update" class="border">
         <header>
           <a href="update/">更新履歴</a>
         </header>
-        <table id="news">
-          <tbody>
+        <table id="update-table">
+          <thead>
             <tr>
               <td>Now Loading...</td>
             </tr>
-          </tbody>
-        </table><!-- /#news -->
-      </section><!-- /.border /.scr-y -->
+          </thead>
+        </table><!-- /#update-table -->
+      </section><!-- /#update /.border -->
       <section class="border">
         <header>
           <h1><a href="blog/">雑記</a></h1>
