@@ -1,11 +1,3 @@
-/*
-.date:after{
-  content: ":";
+.date, .type {
+  white-space: nowrap;
 }
-.type:before {
-  content: "[";
-}
-.type:after {
-  content: "]";
-}
-*/
