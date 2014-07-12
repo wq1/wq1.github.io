@@ -1,4 +1,4 @@
-tbody > tr > *:nth-child(-n+2) {
+#update-tbody > tr > *:nth-child(-n+2) {
   white-space: nowrap;
   vertical-align: top;
 }
