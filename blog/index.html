@@ -5,27 +5,50 @@
     <title>雑記</title>
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      tr > *:nth-child(1) {
+        padding-left: 2em;
+        font-weight: normal;
+        text-align: left;
+      }
+      tr.m > *:nth-child(1) {
+        padding-left: 1em;
+        font-weight: bold;
+      }
+      tr.y > *:nth-child(1) {
+        padding-left: 0em;
+        font-weight: bold;
+      }
+    </style>
     <script src="../js/jquery.min.js"></script>
     <script src="../script.js"></script>
     <script src="script.js"></script>
   </head>
   <body>
     <div id="main">
-      <section>
+      <article>
         <header>
           <h1>雑記</h1>
           <p>
-            不定期更新予定
+            <!-- 公開日: <time datetime="2014-06-19">2014年6月19日</time><br /> -->
+            最終更新日: <time datetime="2014-06-20">2014年6月20日</time>
           </p>
         </header>
-        <section id="2014">
-          <section id="2014-06">
-            <ul>
-              <li>2014-06-20: <a href="2014-06-20/">ウェブサイトを開設しました</a></li>
-            </ul>
-          </section><!-- /#2014-06 -->
-        </section><!-- /#2014 -->
-      </section>
+        <table>
+          <tbody>
+            <tr class="y" id="2014">
+              <th>2014年</th>
+            </tr>
+            <tr class="m" id="2014-06">
+              <th>6月</th>
+            </tr>
+            <tr>
+              <th><time>2014-06-20</time>:</th>
+              <td><a href="2014-06-20/">ウェブサイトを開設しました</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
     </div><!-- /#main -->
   </body>
 </html>

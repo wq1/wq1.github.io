@@ -23,6 +23,10 @@ body > header, body > footer, article > header {
   text-align: center;
 }
 
+table {
+  margin-left: 1em;
+}
+
 th {
   white-space: nowrap;
   vertical-align: top;
