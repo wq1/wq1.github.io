@@ -23,6 +23,11 @@ body > header, body > footer, article > header {
   text-align: center;
 }
 
+th {
+  white-space: nowrap;
+  vertical-align: top;
+}
+
 /* Flexbox
 body {
   display: -webkit-flex;

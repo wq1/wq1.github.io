@@ -9,8 +9,14 @@
         overflow-y: scroll;
         height: 150px;
       }
+      #update h1 {
+        font-size: 100%;
+        font-weight: normal;
+      }
+      th {
+        font-weight: normal;
+      }
     </style>
-    <link rel="stylesheet" href="update/style.css" />
     <script src="js/jquery.min.js"></script>
     <script>
       $(function() {
@@ -25,14 +31,14 @@
     <div id="main">
       <section id="update" class="border">
         <header>
-          <a href="update/">更新履歴</a>
+          <h1><a href="update/">更新履歴</a></h1>
         </header>
         <table id="update-table">
-          <thead>
+          <tbody>
             <tr>
               <td>Now Loading...</td>
             </tr>
-          </thead>
+          </tbody>
         </table><!-- /#update-table -->
       </section><!-- /#update /.border -->
       <section class="border">

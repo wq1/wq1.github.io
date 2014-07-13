@@ -1,4 +1,3 @@
-#update-table tr > *:nth-child(-n+2) {
-  white-space: nowrap;
-  vertical-align: top;
+th {
+  font-weight: normal;
 }
