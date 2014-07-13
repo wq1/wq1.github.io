@@ -17,12 +17,6 @@
         font-weight: normal;
       }
     </style>
-    <script src="js/jquery.min.js"></script>
-    <script>
-      $(function() {
-        $("#update-table").load("update/ #update-table > *");
-      });
-    </script>
   </head>
   <body>
     <header>
@@ -35,9 +29,7 @@
         </header>
         <table id="update-table">
           <tbody>
-            <tr>
-              <td>Now Loading...</td>
-            </tr>
+            <tr><td>Now Loading...</td></tr>
           </tbody>
         </table><!-- /#update-table -->
       </section><!-- /#update /.border -->
@@ -77,5 +69,11 @@
       </p>
       <address>ayumu.shimada@gmail.com</address>
     </footer>
+    <script src="js/jquery.min.js"></script>
+    <script>
+      $("#update-table").load("update/ #update-table > *");
+      $.get("/header.html");
+      $.get("/footer.html");
+    </script>
   </body>
 </html>
