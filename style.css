@@ -42,7 +42,7 @@ header > table {
 }
 
 header > table tr > * {
-  padding-left: 0em !important;
+  padding-left: 0em;
 }
 
 header > table tr > th {
