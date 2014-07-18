@@ -13,7 +13,11 @@ body {
   line-height: 150%;
 }
 
-body > header, body > footer, body > #main, .border {
+header, main, footer {
+  display: block;
+}
+
+body > header, body > footer, body > main, .border {
   margin: 10px;
   padding: 10px;
   border: 1px solid #aaaaaa;
