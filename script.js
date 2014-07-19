@@ -10,7 +10,7 @@ $(function() {
   var moddate = $("#moddate > *:nth-child(2)").html();
   if( pubdate !== void 0 && moddate !== void 0 ){
     if( pubdate == moddate ){
-      $("#moddate").css("display","none")
+      $("#moddate").css("display","none");
     }
   }
 });
