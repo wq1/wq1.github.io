@@ -84,8 +84,18 @@
     <script src="js/jquery.min.js"></script>
     <script>
       $("#update-table").load("update/ #update-table > *");
-      $.get("/header.html");
-      $.get("/footer.html");
+      $.ajax({
+        url: "script.js",
+        dataType: "text",
+      })
+      $.ajax({
+        url: "header.html",
+        dataType: "text",
+      })
+      $.ajax({
+        url: "footer.html",
+        dataType: "text",
+      })
     </script>
   </body>
 </html>
