@@ -85,18 +85,18 @@
     <script>
       $(function() {
         $("#update-table").load("update/ #update-table > *");
-      });
-      $.ajax({
-        url: "script.js",
-        dataType: "text"
-      });
-      $.ajax({
-        url: "header.html",
-        dataType: "text"
-      });
-      $.ajax({
-        url: "footer.html",
-        dataType: "text"
+        $.ajax({
+          url: "script.js",
+          dataType: "text"
+        });
+        $.ajax({
+          url: "header.html",
+          dataType: "text"
+        });
+        $.ajax({
+          url: "footer.html",
+          dataType: "text"
+        });
       });
     </script>
   </body>
