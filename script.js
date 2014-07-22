@@ -1,4 +1,4 @@
-$("title").append(" - 〜無題〜");
+$("title").append(" - :wq! （仮称）");
 $(function() {
   $.get("/header.html", function(data) {
     $("body").prepend(data);
