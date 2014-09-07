@@ -47,7 +47,7 @@
   font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
   font-weight: normal !important;
   font-style: normal !important;
-  font-size: 1em !important;
+  font-size: small !important;
   min-height: inherit !important;
   min-height: auto !important;
 }
@@ -229,7 +229,7 @@
   background-color: white !important;
 }
 .syntaxhighlighter .line.alt1 {
-  background-color: white !important;
+  background-color: #f3f3f3 !important;
 }
 .syntaxhighlighter .line.alt2 {
   background-color: white !important;
