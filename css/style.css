@@ -48,12 +48,6 @@ header > table {
   margin-right: auto;
 }
 
-/*
-header > table tr > * {
-  padding-left: 0em;
-}
-*/
-
 header > table tr > th {
   font-weight: normal;
   text-align: right;
@@ -76,7 +70,7 @@ body > header {
   order:         1;
 }
 
-#main {
+body > main {
   -webkit-order: 2;
   order:         2;
 }
