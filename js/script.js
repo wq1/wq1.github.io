@@ -1,10 +1,10 @@
 (function() {
   $("title").append(" - :wq! （仮称）");
   $.get("/header.html", function(data) {
-    $("body").prepend(data);
+    $("main").before(data);
   });
   $.get("/footer.html", function(data) {
-    $("body").append(data);
+    $("main").after(data);
   });
 }());
 
