@@ -48,6 +48,10 @@ header > table {
   margin-right: auto;
 }
 
+header > table tr > * {
+  padding-left: 0em;
+}
+
 header > table tr > th {
   font-weight: normal;
   text-align: right;
