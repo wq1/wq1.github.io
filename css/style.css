@@ -1,7 +1,7 @@
 * {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+   -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+        box-sizing: border-box;
 }
 
 body {
@@ -11,10 +11,7 @@ body {
   min-width: 320px;
   background-color: #eee8d5;
   line-height: 150%;
-}
-
-header, main, footer, article, section {
-  display: block;
+  font-family: "Times New Roman";
 }
 
 body > header, body > footer, body > main, .border {
@@ -29,9 +26,15 @@ body > header, body > footer, article > header {
 
 table {
   margin-left: 1em;
+  border-collapse: separate;
+  border-spacing: 2px 2px;
 }
 
-th {
+table tr > * {
+  padding: 1px;
+}
+
+table tr > th {
   white-space: nowrap;
   vertical-align: top;
 }
