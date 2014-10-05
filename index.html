@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>:wq! （仮称）</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
       #update {
         overflow-y: scroll;
@@ -88,7 +88,7 @@
     <script src="js/jquery.min.js"></script>
     <script>
       $("#update-table").load("update/ #update-table > *");
-      $.ajax({dataType: "text", url: "script.js"});
+      $.ajax({dataType: "text", url: "js/script.js"});
       $.ajax({dataType: "text", url: "header.html"});
       $.ajax({dataType: "text", url: "footer.html"});
     </script>
