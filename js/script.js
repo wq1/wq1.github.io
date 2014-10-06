@@ -1,9 +1,9 @@
 (function() {
   $("title").append(" - :wq! （仮称）");
-  $.get("/header.html", function(data) {
+  $.get("./header.html", function(data) {
     $("main").before(data);
   });
-  $.get("/footer.html", function(data) {
+  $.get("./footer.html", function(data) {
     $("main").after(data);
   });
 }());
