@@ -1,15 +1,16 @@
 (function() {
-  var x = 0;
-  $("tr.m").each(function(){
-    var i = $(this).index("tr.m, tr.d");
-    var j = i - x;
-    if ( j == 1 ){
-      $("tr.m, tr.d").eq(x).css("display", "none");
-    }
+  "use strict";
+  var x, y, base;
+  base = "tr.m, tr.d";
+  function cmd(i) { $(base).eq(i).css("display", "none"); }
+  x = 0;
+  $("tr.m").each(function() {
+    var i, j;
+    i = $(this).index(base);
+    j = i - x;
+    if(j === 1) { cmd(x); }
     x = i;
   });
-  var y = $("tr.m, tr.d").length - 1;
-  if ( x == y ){
-    $("tr.m, tr.d").eq(x).css("display", "none");
-  }
+  y = $(base).length - 1;
+  if(x === y) { cmd(x); }
 }());
