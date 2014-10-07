@@ -27,7 +27,7 @@ body > header, body > footer, article > header {
 }
 
 body > footer {
-  font-family: "Times New Roman", serif;
+  font-family: Times, "Times New Roman", Georgia, serif;
 }
 
 table {
