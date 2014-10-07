@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-  $("#update-table").load("./update/ #update-table > *");
+  $("#update-table").load("//wq1.github.io/update/ #update-table > *");
 }());
 
 (function () {
@@ -12,7 +12,7 @@
       dataType: "text"
     });
   }
-  prefetch("./js/script.js");
-  prefetch("./header.html");
-  prefetch("./footer.html");
+  prefetch("//wq1.github.io/js/script.js");
+  prefetch("//wq1.github.io/header.html");
+  prefetch("//wq1.github.io/footer.html");
 }());
