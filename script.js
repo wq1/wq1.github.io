@@ -5,7 +5,14 @@
 
 (function () {
   "use strict";
-  $.ajax({ dataType: "text", url: "./js/script.js" });
-  $.ajax({ dataType: "text", url: "./header.html" });
-  $.ajax({ dataType: "text", url: "./footer.html" });
+  function prefetch(url) {
+    $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "text"
+    });
+  }
+  prefetch("./js/script.js");
+  prefetch("./header.html");
+  prefetch("./footer.html");
 }());
