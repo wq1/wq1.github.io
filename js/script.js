@@ -2,10 +2,10 @@
   "use strict";
   $("title").append(" - :wq! （仮称）");
   $.get("//wq1.github.io/header.html", function (data) {
-    $("#wrapper").prepend(data);
+    $("main").before(data);
   });
   $.get("//wq1.github.io/footer.html", function (data) {
-    $("#wrapper").append(data);
+    $("main").after(data);
   });
 }());
 
