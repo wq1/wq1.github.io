@@ -33,11 +33,11 @@
             </p>
             <pre class="brush: bash; highlight: [3, 4]">
               #!/bin/sh
-  
+
               WANIF=eth0
               LANIF=eth1
-  
-  
+
+
               iptables -P INPUT   DROP
               iptables -P FORWARD DROP
               iptables -P OUTPUT  DROP
@@ -47,13 +47,13 @@
               iptables -X -t nat
               iptables -F -t mangle
               iptables -X -t mangle
-  
-  
+
+
               sysctl -w net.ipv4.ip_forward=1
               iptables -A POSTROUTING -t nat    -o $WANIF -j MASQUERADE
               iptables -A POSTROUTING -t mangle -o $WANIF -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-  
-  
+
+
               iptables -N INGRESS_s
               iptables -N INGRESS_d
               iptables -A INGRESS_s -s 10.0.0.0/8     -j DROP
@@ -62,13 +62,13 @@
               iptables -A INGRESS_d -d 172.16.0.0/12  -j REJECT --reject-with icmp-net-unreachable
               iptables -A INGRESS_s -s 192.168.0.0/16 -j DROP
               iptables -A INGRESS_d -d 192.168.0.0/16 -j REJECT --reject-with icmp-net-unreachable
-  
+
               iptables -A INPUT   -i $WANIF -j INGRESS_s
               iptables -A FORWARD -i $WANIF -j INGRESS_s
               iptables -A FORWARD -o $WANIF -j INGRESS_d
               iptables -A OUTPUT  -o $WANIF -j INGRESS_d
-  
-  
+
+
               iptables -N Windows_i
               iptables -N Windows_o
               iptables -A Windows_i -p tcp -m multiport --sport 135,137,138,139,445 -j DROP
@@ -79,16 +79,16 @@
               iptables -A Windows_o -p tcp -m multiport --dport 135,137,138,139,445 -j REJECT
               iptables -A Windows_i -p udp -m multiport --dport 135,137,138,139,445 -j DROP
               iptables -A Windows_o -p udp -m multiport --dport 135,137,138,139,445 -j REJECT
-  
+
               iptables -A INPUT   -i $WANIF -j Windows_i
               iptables -A FORWARD -i $WANIF -j Windows_i
               iptables -A FORWARD -o $WANIF -j Windows_o
               iptables -A OUTPUT  -o $WANIF -j Windows_o
-  
-  
+
+
               iptables -A INPUT   -i $WANIF -p tcp --dport 113 -j REJECT --reject-with tcp-reset
-  
-  
+
+
               iptables -N icmp-error
               iptables -A icmp-error -p icmp --icmp-type 3  -j ACCEPT
               iptables -A icmp-error -p icmp --icmp-type 4  -j ACCEPT
@@ -97,16 +97,16 @@
               iptables -A icmp-error -p icmp --icmp-type 12 -j ACCEPT
               iptables -A icmp-error -p icmp --icmp-type 31 -j ACCEPT
               iptables -A icmp-error -p icmp --icmp-type 32 -j ACCEPT
-  
+
               iptables -A INPUT   -i $WANIF -j icmp-error
               iptables -A FORWARD -i $WANIF -j icmp-error
-  
-  
+
+
               iptables -P OUTPUT                ACCEPT
               iptables -A INPUT   -i lo      -j ACCEPT
               iptables -A INPUT   -i $LANIF  -j ACCEPT
               iptables -A FORWARD -i $LANIF  -j ACCEPT
-  
+
               exit 0
             </pre>
             <p>
