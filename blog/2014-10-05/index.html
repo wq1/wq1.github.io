@@ -9,116 +9,116 @@
     <link rel="stylesheet" href="/js/syntaxhighlighter/shCoreDefault.css" />
   </head>
   <body>
-    <main>
-      <article>
-        <header>
-          <h2>iptablesを用いたNAPTルータの最低限の設定</h2>
-          <table>
-            <tbody>
-              <tr id="pubdate">
-                <th>公開日:</th>
-                <td><time datetime="2014-10-05">2014年10月5日</time></td>
-              </tr>
-              <tr id="moddate">
-                <th>最終更新日:</th>
-                <td><time datetime="2014-10-05">2014年10月5日</time></td>
-              </tr>
-            </tbody>
-          </table>
-        </header>
-        <div class="main">
-          <p>
-            <a href="http://www.rtpro.yamaha.co.jp/RTA54i/ScreenShot/40310/security-level7.html#screen">YAMAHAルータ“RTA54i”の設定例</a>を参考に，Linux/UnixなマシンをNAPTルータ（家庭用ブロードバンドルータはこれに該当する）として動作させる場合の最低限のスクリプトを作成した．
-          </p>
-          <pre class="brush: bash; highlight: [3, 4]">
-            #!/bin/sh
-
-            WANIF=eth0
-            LANIF=eth1
-
-
-            iptables -P INPUT   DROP
-            iptables -P FORWARD DROP
-            iptables -P OUTPUT  DROP
-            iptables -F
-            iptables -X
-            iptables -F -t nat
-            iptables -X -t nat
-            iptables -F -t mangle
-            iptables -X -t mangle
-
-
-            sysctl -w net.ipv4.ip_forward=1
-            iptables -A POSTROUTING -t nat    -o $WANIF -j MASQUERADE
-            iptables -A POSTROUTING -t mangle -o $WANIF -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-
-
-            iptables -N INGRESS_s
-            iptables -N INGRESS_d
-            iptables -A INGRESS_s -s 10.0.0.0/8     -j DROP
-            iptables -A INGRESS_d -d 10.0.0.0/8     -j REJECT --reject-with icmp-net-unreachable
-            iptables -A INGRESS_s -s 172.16.0.0/12  -j DROP
-            iptables -A INGRESS_d -d 172.16.0.0/12  -j REJECT --reject-with icmp-net-unreachable
-            iptables -A INGRESS_s -s 192.168.0.0/16 -j DROP
-            iptables -A INGRESS_d -d 192.168.0.0/16 -j REJECT --reject-with icmp-net-unreachable
-
-            iptables -A INPUT   -i $WANIF -j INGRESS_s
-            iptables -A FORWARD -i $WANIF -j INGRESS_s
-            iptables -A FORWARD -o $WANIF -j INGRESS_d
-            iptables -A OUTPUT  -o $WANIF -j INGRESS_d
-
-
-            iptables -N Windows_i
-            iptables -N Windows_o
-            iptables -A Windows_i -p tcp -m multiport --sport 135,137,138,139,445 -j DROP
-            iptables -A Windows_o -p tcp -m multiport --sport 135,137,138,139,445 -j REJECT
-            iptables -A Windows_i -p udp -m multiport --sport 135,137,138,139,445 -j DROP
-            iptables -A Windows_o -p udp -m multiport --sport 135,137,138,139,445 -j REJECT
-            iptables -A Windows_i -p tcp -m multiport --dport 135,137,138,139,445 -j DROP
-            iptables -A Windows_o -p tcp -m multiport --dport 135,137,138,139,445 -j REJECT
-            iptables -A Windows_i -p udp -m multiport --dport 135,137,138,139,445 -j DROP
-            iptables -A Windows_o -p udp -m multiport --dport 135,137,138,139,445 -j REJECT
-
-            iptables -A INPUT   -i $WANIF -j Windows_i
-            iptables -A FORWARD -i $WANIF -j Windows_i
-            iptables -A FORWARD -o $WANIF -j Windows_o
-            iptables -A OUTPUT  -o $WANIF -j Windows_o
-
-
-            iptables -A INPUT   -i $WANIF -p tcp --dport 113 -j REJECT --reject-with tcp-reset
-
-
-            iptables -N icmp-error
-            iptables -A icmp-error -p icmp --icmp-type 3  -j ACCEPT
-            iptables -A icmp-error -p icmp --icmp-type 4  -j ACCEPT
-            iptables -A icmp-error -p icmp --icmp-type 5  -j ACCEPT
-            iptables -A icmp-error -p icmp --icmp-type 11 -j ACCEPT
-            iptables -A icmp-error -p icmp --icmp-type 12 -j ACCEPT
-            iptables -A icmp-error -p icmp --icmp-type 31 -j ACCEPT
-            iptables -A icmp-error -p icmp --icmp-type 32 -j ACCEPT
-
-            iptables -A INPUT   -i $WANIF -j icmp-error
-            iptables -A FORWARD -i $WANIF -j icmp-error
-
-
-            iptables -P OUTPUT                ACCEPT
-            iptables -A INPUT   -i lo      -j ACCEPT
-            iptables -A INPUT   -i $LANIF  -j ACCEPT
-            iptables -A FORWARD -i $LANIF  -j ACCEPT
-
-            exit 0
-          </pre>
-          <p>
-            3, 4行目<br />
-            WAN側とLAN側のインタフェースをそれぞれ指定している．<br />
-            環境に応じて適宜変更する．
-          </p>
-          <footer>
-            （後日追記予定）
-          </footer>
-        <!-- /.main --></div>
-      </article>
-    </main>
+      <main>
+        <article>
+          <header>
+            <h2>iptablesを用いたNAPTルータの最低限の設定</h2>
+            <table>
+              <tbody>
+                <tr id="pubdate">
+                  <th>公開日:</th>
+                  <td><time datetime="2014-10-05">2014年10月5日</time></td>
+                </tr>
+                <tr id="moddate">
+                  <th>最終更新日:</th>
+                  <td><time datetime="2014-10-05">2014年10月5日</time></td>
+                </tr>
+              </tbody>
+            </table>
+          </header>
+          <div class="main">
+            <p>
+              <a href="http://www.rtpro.yamaha.co.jp/RTA54i/ScreenShot/40310/security-level7.html#screen">YAMAHAルータ“RTA54i”の設定例</a>を参考に，Linux/UnixなマシンをNAPTルータ（家庭用ブロードバンドルータはこれに該当する）として動作させる場合の最低限のスクリプトを作成した．
+            </p>
+            <pre class="brush: bash; highlight: [3, 4]">
+              #!/bin/sh
+  
+              WANIF=eth0
+              LANIF=eth1
+  
+  
+              iptables -P INPUT   DROP
+              iptables -P FORWARD DROP
+              iptables -P OUTPUT  DROP
+              iptables -F
+              iptables -X
+              iptables -F -t nat
+              iptables -X -t nat
+              iptables -F -t mangle
+              iptables -X -t mangle
+  
+  
+              sysctl -w net.ipv4.ip_forward=1
+              iptables -A POSTROUTING -t nat    -o $WANIF -j MASQUERADE
+              iptables -A POSTROUTING -t mangle -o $WANIF -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+  
+  
+              iptables -N INGRESS_s
+              iptables -N INGRESS_d
+              iptables -A INGRESS_s -s 10.0.0.0/8     -j DROP
+              iptables -A INGRESS_d -d 10.0.0.0/8     -j REJECT --reject-with icmp-net-unreachable
+              iptables -A INGRESS_s -s 172.16.0.0/12  -j DROP
+              iptables -A INGRESS_d -d 172.16.0.0/12  -j REJECT --reject-with icmp-net-unreachable
+              iptables -A INGRESS_s -s 192.168.0.0/16 -j DROP
+              iptables -A INGRESS_d -d 192.168.0.0/16 -j REJECT --reject-with icmp-net-unreachable
+  
+              iptables -A INPUT   -i $WANIF -j INGRESS_s
+              iptables -A FORWARD -i $WANIF -j INGRESS_s
+              iptables -A FORWARD -o $WANIF -j INGRESS_d
+              iptables -A OUTPUT  -o $WANIF -j INGRESS_d
+  
+  
+              iptables -N Windows_i
+              iptables -N Windows_o
+              iptables -A Windows_i -p tcp -m multiport --sport 135,137,138,139,445 -j DROP
+              iptables -A Windows_o -p tcp -m multiport --sport 135,137,138,139,445 -j REJECT
+              iptables -A Windows_i -p udp -m multiport --sport 135,137,138,139,445 -j DROP
+              iptables -A Windows_o -p udp -m multiport --sport 135,137,138,139,445 -j REJECT
+              iptables -A Windows_i -p tcp -m multiport --dport 135,137,138,139,445 -j DROP
+              iptables -A Windows_o -p tcp -m multiport --dport 135,137,138,139,445 -j REJECT
+              iptables -A Windows_i -p udp -m multiport --dport 135,137,138,139,445 -j DROP
+              iptables -A Windows_o -p udp -m multiport --dport 135,137,138,139,445 -j REJECT
+  
+              iptables -A INPUT   -i $WANIF -j Windows_i
+              iptables -A FORWARD -i $WANIF -j Windows_i
+              iptables -A FORWARD -o $WANIF -j Windows_o
+              iptables -A OUTPUT  -o $WANIF -j Windows_o
+  
+  
+              iptables -A INPUT   -i $WANIF -p tcp --dport 113 -j REJECT --reject-with tcp-reset
+  
+  
+              iptables -N icmp-error
+              iptables -A icmp-error -p icmp --icmp-type 3  -j ACCEPT
+              iptables -A icmp-error -p icmp --icmp-type 4  -j ACCEPT
+              iptables -A icmp-error -p icmp --icmp-type 5  -j ACCEPT
+              iptables -A icmp-error -p icmp --icmp-type 11 -j ACCEPT
+              iptables -A icmp-error -p icmp --icmp-type 12 -j ACCEPT
+              iptables -A icmp-error -p icmp --icmp-type 31 -j ACCEPT
+              iptables -A icmp-error -p icmp --icmp-type 32 -j ACCEPT
+  
+              iptables -A INPUT   -i $WANIF -j icmp-error
+              iptables -A FORWARD -i $WANIF -j icmp-error
+  
+  
+              iptables -P OUTPUT                ACCEPT
+              iptables -A INPUT   -i lo      -j ACCEPT
+              iptables -A INPUT   -i $LANIF  -j ACCEPT
+              iptables -A FORWARD -i $LANIF  -j ACCEPT
+  
+              exit 0
+            </pre>
+            <p>
+              3, 4行目<br />
+              WAN側とLAN側のインタフェースをそれぞれ指定している．<br />
+              環境に応じて適宜変更する．
+            </p>
+            <footer>
+              （後日追記予定）
+            </footer>
+          <!-- /.main --></div>
+        </article>
+      </main>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/script.js" async></script>
     <script src="/blog/script.js" async></script>
