@@ -16,17 +16,17 @@ body {
   font-family: arial, helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "MS Pゴシック", clean, sans-serif;
 }
 
-body > header, body > footer, body > main, .border {
+#wrapper > header, #wrapper > footer, #wrapper > main, .border {
   margin: 10px;
   padding: 10px;
   border: 1px solid #aaaaaa;
 }
 
-body > header, body > footer, article > header {
+#wrapper > header, #wrapper > footer, article > header {
   text-align: center;
 }
 
-body > footer {
+#wrapper > footer {
   font-family: Times, "Times New Roman", Georgia, serif;
 }
 
@@ -60,24 +60,24 @@ header > table tr > *:nth-child(2) {
 }
 
 /* Flexbox
-body {
+#wrapper {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
   flex-direction:         column;
 }
 
-body > header {
+#wrapper > header {
   -webkit-order: 1;
   order:         1;
 }
 
-body > main {
+#wrapper > main {
   -webkit-order: 2;
   order:         2;
 }
 
-body > footer {
+#wrapper > footer {
   -webkit-order: 3;
   order:         3;
 }
