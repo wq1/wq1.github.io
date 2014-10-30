@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Python 3 から MessageBox (Windows API) を呼び出す</title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/blog/style.css" />
+    <link rel="stylesheet" href="/js/syntaxhighlighter/shCoreDefault.css" />
+    <style>
+      .bg-red {
+        background-color: #f8cbcb;
+      }
+      .bg-green {
+        background-color: #a6f3a6;
+      }
+      .bg-red2 {
+        background-color: #ffecec;
+      }
+      .bg-green2 {
+        background-color: #eaffea;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <main>
+        <article>
+          <header>
+            <h2>Python 3 から MessageBox (Windows API) を呼び出す</h2>
+            <table>
+              <tbody>
+                <tr id="pubdate">
+                  <th>公開日:</th>
+                  <td><time datetime="2014-10-30">2014年10月30日</time></td>
+                </tr>
+                <tr id="moddate">
+                  <th>最終更新日:</th>
+                  <td><time datetime="2014-10-30">2014年10月30日</time></td>
+                </tr>
+              </tbody>
+            </table>
+          </header>
+          <div class="main">
+            <p>
+              タイトルの通りのことを行いたい場合， <a href="https://docs.python.org/3/library/ctypes.html#function-prototypes">Python ドキュメント</a> によれば，下記のコードで実現できるとされている．<br />
+            </p>
+            <pre class="brush: python">
+              from ctypes import c_int, WINFUNCTYPE, windll
+              from ctypes.wintypes import HWND, LPCSTR, UINT
+              prototype = WINFUNCTYPE(c_int, HWND, LPCSTR, LPCSTR, UINT)
+              paramflags = (1, "hwnd", 0), (1, "text", "Hi"), (1, "caption", None), (1, "flags", 0)
+              MessageBox = prototype(("MessageBoxA", windll.user32), paramflags)
+
+              MessageBox()
+              MessageBox(text="Spam, spam, spam")
+              MessageBox(flags=2, text="foo bar")
+            </pre>
+            <p>
+              しかし，予期に反して Python 3 ではこのコードは動作せず，以下のエラーが出力される．<br />
+            </p>
+            <pre class="brush: plain">
+              Traceback (most recent call last):
+                File "&lt;stdin&gt;", line 1, in &lt;?&gt;
+              ctypes.ArgumentError: argument 2: &lt;class 'TypeError'&gt;: wrong type
+            </pre>
+            <p>
+              原因はエラーメッセージの通り，つまり，Unicode文字列を，バイト列を引数にとるMessageBoxAへ渡そうとしていることである．<br />
+              この場合，MessageBoxAの代わりにMessageBoxWを呼び出すよう以下のように修正すれば，期待する動作となるはずだ．<br />
+            </p>
+            <pre class="brush: python; highlight: [2, 3, 5]">
+              from ctypes import c_int, WINFUNCTYPE, windll
+              from ctypes.wintypes import HWND, LPCWSTR, UINT
+              prototype = WINFUNCTYPE(c_int, HWND, LPCWSTR, LPCWSTR, UINT)
+              paramflags = (1, "hwnd", 0), (1, "text", "Hi"), (1, "caption", None), (1, "flags", 0)
+              MessageBox = prototype(("MessageBoxW", windll.user32), paramflags)
+
+              MessageBox()
+              MessageBox(text="Spam, spam, spam")
+              MessageBox(flags=2, text="foo bar")
+            </pre>
+            <p>
+              あるいは，特別な事情（？）によりMessageBoxAを呼び出さなくてはならない場合は，以下のコードにより問題を部分的に解決できる．<br />
+            </p>
+            <pre class="brush: python; highlight: [3, 4, 6, 10, 11]">
+              from ctypes import c_int, WINFUNCTYPE, windll
+              from ctypes.wintypes import HWND, LPCSTR, UINT
+              from locale import getpreferredencoding
+              preferredEncoding = getpreferredencoding()
+              prototype = WINFUNCTYPE(c_int, HWND, LPCSTR, LPCSTR, UINT)
+              paramflags = (1, "hwnd", 0), (1, "text", "Hi".encode(preferredEncoding)), (1, "caption", None), (1, "flags", 0)
+              MessageBox = prototype(("MessageBoxA", windll.user32), paramflags)
+
+              MessageBox()
+              MessageBox(text="Spam, spam, spam".encode(preferredEncoding))
+              MessageBox(flags=2, text="foo bar".encode(preferredEncoding))
+            </pre>
+            <p>
+              getpreferredencoding()によりシステムのデフォルトエンコーディングを取得し，Unicode文字列をそれにエンコードしたものをMessageBoxAへ渡せばよい．<br />
+              ただし，エンコードできない文字を含んだUnicode文字列の場合この方法では当然失敗するし，オーバヘッドも生じるので，MessageBoxWを呼び出すことを推奨したい．<br />
+            </p>
+          <!-- /.main --></div>
+        </article>
+      </main>
+    <!-- /#wrapper --></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/script.js" async></script>
+    <script src="/blog/script.js" async></script>
+    <script src="/js/syntaxhighlighter/shCore.js" defer></script>
+    <script src="/js/syntaxhighlighter/shBrushPython.js" defer></script>
+    <script src="/js/syntaxhighlighter/shBrushPlain.js" defer></script>
+    <script src="/js/syntaxhighlighter/shAll.js" defer></script>
+  </body>
+</html>
