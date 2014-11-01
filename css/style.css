@@ -19,7 +19,8 @@ body {
 #wrapper > header,
 #wrapper > footer,
 #wrapper > main,
-.border {
+.border
+{
   margin: 10px;
   padding: 10px;
   border: 1px solid #aaaaaa;
@@ -27,7 +28,8 @@ body {
 
 #wrapper > header,
 #wrapper > footer,
-article  > header {
+article  > header
+{
   text-align: center;
 }
 
@@ -62,6 +64,19 @@ header > table tr > th {
 
 header > table tr > *:nth-child(2) {
   text-align: left;
+}
+
+.bg-red {
+  background-color: #f8cbcb;
+}
+.bg-green {
+  background-color: #a6f3a6;
+}
+.bg-red2 {
+  background-color: #ffecec;
+}
+.bg-green2 {
+  background-color: #eaffea;
 }
 
 /* Flexbox
