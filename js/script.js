@@ -2,8 +2,8 @@
   "use strict";
   $.get("//wq1.github.io/", function (data) {
     $("title").append(" - " + $(data).filter("title").text());
-    $("main").before($("#header", data));
-    $("main").after($("#footer", data));
+    $("main").before($(data).filter("#wrapper").children("header"));
+    $("main").after($(data).filter("#wrapper").children("footer"));
   });
 }());
 
