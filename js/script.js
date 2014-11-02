@@ -1,11 +1,9 @@
 (function () {
   "use strict";
-  $("title").append(" - :wq! （仮称）");
-  $.get("//wq1.github.io/header.html", function (data) {
-    $("main").before(data);
-  });
-  $.get("//wq1.github.io/footer.html", function (data) {
-    $("main").after(data);
+  $.get("//wq1.github.io/", function (data) {
+    $("title").append(" - " + $(data).filter("title").text());
+    $("main").before($("#header", data));
+    $("main").after($("#footer", data));
   });
 }());
 
