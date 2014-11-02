@@ -32,10 +32,9 @@
 
 $("#revsw").on("click", function () {
   "use strict";
-  var base, buf, y, m, d;
-  base = "tr.y, tr.m, tr.d";
-  buf = [];
 
+  var base = "tr.y, tr.m, tr.d";
+  var y, m, d;
   $.each(["y", "m", "d"], function () {
     var ymd = this;
     eval(ymd + " = []");
@@ -48,15 +47,17 @@ $("#revsw").on("click", function () {
   m.reverse();
   d.reverse();
 
+  var buf = [];
   function pusheq(ymd) {
     eval("buf.push($(base).eq(" + ymd + "[0])[0].outerHTML)");
   }
+  var y0, m0;
   while (y.length) {
     pusheq("y");
-    var y0 = y.shift();
+    y0 = y.shift();
     while (y0 < m[0]) {
       pusheq("m");
-      var m0 = m.shift();
+      m0 = m.shift();
       while (m0 < d[0]) {
         pusheq("d");
         d.shift();
