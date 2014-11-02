@@ -7,18 +7,13 @@
     base = a + ", " + b;
     rm = [];
 
-    function cmd(i) {
-      // $(base).eq(i).css("display", "none");
-      rm.push($(base).eq(i));
-    }
-
     $(a).each(function () {
       var i;
       i = $(this).index(base);
-      if (i - x === 1) { cmd(x); }
+      if (i - x === 1) { rm.push($(base).eq(x)); }
       x = i;
     });
-    if (x === $(base).length - 1) { cmd(x); }
+    if (x === $(base).length - 1) { rm.push($(base).eq(x)); }
 
     $.each(rm, function () {
       this.remove();
@@ -32,34 +27,28 @@
 
 $("#revsw").on("click", function () {
   "use strict";
+  var base, buf, y, m, d, y0, m0;
+  base = "tr.y, tr.m, tr.d";
+  buf = [];
 
-  var base = "tr.y, tr.m, tr.d";
-  var y, m, d;
-  $.each(["y", "m", "d"], function () {
-    var ymd = this;
-    eval(ymd + " = []");
-    $("tr." + ymd).each(function () {
-      eval(ymd + ".push($(this).index(base))");
-    });
-  });
-
+  y = [];
+  m = [];
+  d = [];
+  $("tr.y").each(function () { y.push($(this).index(base)); });
+  $("tr.m").each(function () { m.push($(this).index(base)); });
+  $("tr.d").each(function () { d.push($(this).index(base)); });
   y.reverse();
   m.reverse();
   d.reverse();
 
-  var buf = [];
-  function pusheq(ymd) {
-    eval("buf.push($(base).eq(" + ymd + "[0])[0].outerHTML)");
-  }
-  var y0, m0;
   while (y.length) {
-    pusheq("y");
+    buf.push($(base).eq(y[0])[0].outerHTML);
     y0 = y.shift();
     while (y0 < m[0]) {
-      pusheq("m");
+      buf.push($(base).eq(m[0])[0].outerHTML);
       m0 = m.shift();
       while (m0 < d[0]) {
-        pusheq("d");
+        buf.push($(base).eq(d[0])[0].outerHTML);
         d.shift();
       }
     }
