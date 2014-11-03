@@ -1,10 +1,10 @@
 (function () {
-  "use strict";
+  'use strict';
 
   function rmempty(a, b) {
     var x, base, rm;
     x = 0;
-    base = a + ", " + b;
+    base = a + ', ' + b;
     rm = [];
 
     $(a).each(function () {
@@ -20,23 +20,23 @@
     });
   }
 
-  rmempty("tr.m", "tr.d");
-  rmempty("tr.y", "tr.m");
+  rmempty('tr.m', 'tr.d');
+  rmempty('tr.y', 'tr.m');
 }());
 
 
-$("#revsw").on("click", function () {
-  "use strict";
+$('#revsw').on('click', function () {
+  'use strict';
   var base, buf, y, m, d, y0, m0;
-  base = "tr.y, tr.m, tr.d";
+  base = 'tr.y, tr.m, tr.d';
   buf = [];
 
   y = [];
   m = [];
   d = [];
-  $("tr.y").each(function () { y.push($(this).index(base)); });
-  $("tr.m").each(function () { m.push($(this).index(base)); });
-  $("tr.d").each(function () { d.push($(this).index(base)); });
+  $('tr.y').each(function () { y.push($(this).index(base)); });
+  $('tr.m').each(function () { m.push($(this).index(base)); });
+  $('tr.d').each(function () { d.push($(this).index(base)); });
   y.reverse();
   m.reverse();
   d.reverse();
@@ -54,12 +54,12 @@ $("#revsw").on("click", function () {
     }
   }
 
-  buf.join("");
-  $(".main tbody").html(buf);
+  buf.join('');
+  $('.main tbody').html(buf);
 
-  if ($(this).html() === "▲") {
-    $(this).html("▼");
+  if ($(this).html() === '▲') {
+    $(this).html('▼');
   } else {
-    $(this).html("▲");
+    $(this).html('▲');
   }
 });

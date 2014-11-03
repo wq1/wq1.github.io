@@ -1,13 +1,13 @@
 (function () {
-  "use strict";
-  $.get("//wq1.github.io/update/", function (data) {
+  'use strict';
+  $.get('/update/', function (data) {
     var max = 10;
-    $("#update-table > tbody").html($("#update-table tr.d", data).slice(0, max));
-    $("#update-num").html(max);
+    $('#update-table > tbody').html($('#update-table tr.d', data).slice(0, max));
+    $('#update-num').html(max);
   });
-  $.get("//wq1.github.io/blog/", function (data) {
+  $.get('/blog/', function (data) {
     var max = 5;
-    $("#blog-table > tbody").html($("#blog-table tr.d", data).slice(0, max));
-    $("#blog-num").html(max);
+    $('#blog-table > tbody').html($('#blog-table tr.d', data).slice(0, max));
+    $('#blog-num').html(max);
   });
 }());
