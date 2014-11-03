@@ -37,6 +37,7 @@ article  > header
   font-family: Times, "Times New Roman", Georgia, serif;
 }
 
+
 table {
   margin-left: 1em;
   border-collapse: separate;
@@ -52,9 +53,14 @@ table tr > th {
   vertical-align: top;
 }
 
+
 header > table {
   margin-left: auto;
   margin-right: auto;
+}
+
+header > table tr > * {
+  text-align: left;
 }
 
 header > table tr > th {
@@ -62,9 +68,11 @@ header > table tr > th {
   text-align: right;
 }
 
-header > table tr > *:nth-child(2) {
-  text-align: left;
+
+h3 {
+  margin-top: 2em;
 }
+
 
 .bg-red {
   background-color: #f8cbcb;
@@ -78,6 +86,7 @@ header > table tr > *:nth-child(2) {
 .bg-green2 {
   background-color: #eaffea;
 }
+
 
 /* Flexbox
 #wrapper {
