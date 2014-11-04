@@ -2,11 +2,12 @@
   'use strict';
 
   function rmempty(a, b) {
-    var x, base, rm;
-    x = 0;
+    var base, rm, x;
     base = $(a + ', ' + b);
+
     rm = [];
 
+    x = 0;
     $(a).each(function () {
       var i;
       i = base.index(this);
@@ -25,7 +26,7 @@
 
 $('#revsw').on('click', function () {
   'use strict';
-  var base, y, m, d, y0, m0, buf, sw;
+  var base, y, m, d, buf, y0, m0, sw;
   base = $('tr.y, tr.m, tr.d');
 
   y = [];
@@ -39,6 +40,7 @@ $('#revsw').on('click', function () {
   d.reverse();
 
   buf = [];
+
   while (y.length) {
     buf.push(base.eq(y[0]));
     y0 = y.shift();
