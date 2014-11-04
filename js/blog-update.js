@@ -15,9 +15,7 @@
     });
     if (x === base.length - 1) { rm.push(base.eq(x)); }
 
-    $.each(rm, function () {
-      this.remove();
-    });
+    $.each(rm, function () { this.remove(); });
   }
 
   rmempty('tr.m', 'tr.d');
