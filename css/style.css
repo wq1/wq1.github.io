@@ -69,8 +69,11 @@ header > table tr > th {
 }
 
 
-h3 {
+article > .main > section {
   margin-top: 2em;
+}
+
+h3 {
   border-bottom: 1px solid #aaaaaa;
 }
 
