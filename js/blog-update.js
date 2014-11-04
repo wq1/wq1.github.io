@@ -9,7 +9,7 @@
 
     $(a).each(function () {
       var i;
-      i = base.index($(this));
+      i = base.index(this);
       if (i - x === 1) { rm.push(base.eq(x)); }
       x = i;
     });
@@ -25,20 +25,20 @@
 
 $('#revsw').on('click', function () {
   'use strict';
-  var base, buf, y, m, d, y0, m0;
+  var base, y, m, d, y0, m0, buf, sw;
   base = $('tr.y, tr.m, tr.d');
-  buf = [];
 
   y = [];
   m = [];
   d = [];
-  $('tr.y').each(function () { y.push(base.index($(this))); });
-  $('tr.m').each(function () { m.push(base.index($(this))); });
-  $('tr.d').each(function () { d.push(base.index($(this))); });
+  $('tr.y').each(function () { y.push(base.index(this)); });
+  $('tr.m').each(function () { m.push(base.index(this)); });
+  $('tr.d').each(function () { d.push(base.index(this)); });
   y.reverse();
   m.reverse();
   d.reverse();
 
+  buf = [];
   while (y.length) {
     buf.push(base.eq(y[0]));
     y0 = y.shift();
@@ -54,9 +54,10 @@ $('#revsw').on('click', function () {
 
   $('.main tbody').html(buf);
 
-  if ($(this).html() === '▲') {
-    $(this).html('▼');
+  sw = $(this);
+  if (sw.html() === '▲') {
+    sw.html('▼');
   } else {
-    $(this).html('▲');
+    sw.html('▲');
   }
 });
