@@ -1,9 +1,15 @@
 (function () {
   'use strict';
   $.get('/', function (data) {
-    $('title').append(' - ' + $(data).filter('title').text());
-    $('main').before($(data).filter('#wrapper').children('header'));
-    $('main').after($(data).filter('#wrapper').children('footer'));
+    var main, wrapper;
+    data = $(data);
+
+    $('title').append(' - ' + data.filter('title').text());
+
+    main = $('main');
+    wrapper = data.filter('#wrapper');
+    main.before(wrapper.children('header'));
+    main.after(wrapper.children('footer'));
   });
 }());
 
