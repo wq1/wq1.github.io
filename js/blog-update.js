@@ -11,12 +11,15 @@
     $(a).each(function () {
       var i;
       i = base.index(this);
-      if (i - x === 1) { rm.push(base.eq(x)); }
+      if (i - x === 1) { rm.push(base.eq(x)[0]); }
       x = i;
     });
-    if (x === base.length - 1) { rm.push(base.eq(x)); }
+    if (x === base.length - 1) { rm.push(base.eq(x)[0]); }
 
-    $.each(rm, function () { this.remove(); });
+    rm = $(rm);
+    rm.remove();
+
+    // $.each(rm, function () { this.remove(); });
   }
 
   rmempty('tr.m', 'tr.d');
@@ -42,19 +45,21 @@ $('#revsw').on('click', function () {
   buf = [];
 
   while (y.length) {
-    buf.push(base.eq(y[0]));
+    buf.push(base.eq(y[0])[0]);
     y0 = y.shift();
     while (y0 < m[0]) {
-      buf.push(base.eq(m[0]));
+      buf.push(base.eq(m[0])[0]);
       m0 = m.shift();
       while (m0 < d[0]) {
-        buf.push(base.eq(d[0]));
+        buf.push(base.eq(d[0])[0]);
         d.shift();
       }
     }
   }
 
-  $('.main tbody').html(buf);
+  buf = $(buf);
+  $('#update-table > tbody').html(buf);
+  $('#blog-table > tbody').html(buf);
 
   sw = $(this);
   if (sw.html() === '▲') {
