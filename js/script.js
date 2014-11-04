@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+
   $.get('/', function (data) {
     var main, wrapper;
     data = $(data);
@@ -12,6 +13,7 @@
     main.after(wrapper.children('footer'));
   });
 }());
+
 
 (function () {
   'use strict';
