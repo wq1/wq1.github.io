@@ -16,8 +16,8 @@
     });
     if (x === base.length - 1) { rm.push(base.eq(x)[0]); }
 
-    // rm = $(rm);
-    $(rm).remove();
+    rm = $(rm);
+    rm.remove();
   }
 
   rmempty('tr.m', 'tr.d');
@@ -35,9 +35,9 @@
     y = [];
     m = [];
     d = [];
-    $('tr.y').each(function () { y.push(base.index($(this))); });
-    $('tr.m').each(function () { m.push(base.index($(this))); });
-    $('tr.d').each(function () { d.push(base.index($(this))); });
+    $('tr.y').each(function () { y.push(base.index(this)); });
+    $('tr.m').each(function () { m.push(base.index(this)); });
+    $('tr.d').each(function () { d.push(base.index(this)); });
     y.reverse();
     m.reverse();
     d.reverse();
@@ -62,10 +62,10 @@
     $('#blog-table').children('tbody').empty().append(buf);
 
     sw = $(this);
-    if (sw.html() === '▲') {
-      sw.html('▼');
+    if (sw.text() === '▲') {
+      sw.empty().append('▼');
     } else {
-      sw.html('▲');
+      sw.empty().append('▲');
     }
   });
 }());

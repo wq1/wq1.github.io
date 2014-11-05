@@ -2,10 +2,12 @@
   'use strict';
 
   $.get('/', function (data) {
-    var main, wrapper;
+    var title, titleNew, main, wrapper;
     data = $(data);
 
-    $('title').append(' - ' + data.filter('title').html());
+    title = $('title');
+    titleNew = title.text() + ' - ' + data.filter('title').text();
+    title.empty().append(titleNew);
 
     main = $('main');
     wrapper = data.filter('#wrapper');
@@ -17,16 +19,12 @@
 
 (function () {
   'use strict';
-
   var pubdate, moddate, pubhtml, modhtml;
+
   pubdate = $('#pubdate');
   moddate = $('#moddate');
-  pubhtml = $(pubdate.children().eq(1)).html();
-  modhtml = $(moddate.children().eq(1)).html();
+  pubhtml = $(pubdate.children().eq(1)).text();
+  modhtml = $(moddate.children().eq(1)).text();
 
-  if (pubhtml !== undefined && modhtml !== undefined) {
-    if (pubhtml === modhtml) {
-      moddate.css('display', 'none');
-    }
-  }
+  if (pubhtml === modhtml) { moddate.css('display', 'none'); }
 }());
