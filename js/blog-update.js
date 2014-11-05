@@ -10,16 +10,14 @@
     x = 0;
     $(a).each(function () {
       var i;
-      i = base.index(this);
+      i = base.index($(this));
       if (i - x === 1) { rm.push(base.eq(x)[0]); }
       x = i;
     });
     if (x === base.length - 1) { rm.push(base.eq(x)[0]); }
 
-    rm = $(rm);
-    rm.remove();
-
-    // $.each(rm, function () { this.remove(); });
+    // rm = $(rm);
+    $(rm).remove();
   }
 
   rmempty('tr.m', 'tr.d');
@@ -37,9 +35,9 @@
     y = [];
     m = [];
     d = [];
-    $('tr.y').each(function () { y.push(base.index(this)); });
-    $('tr.m').each(function () { m.push(base.index(this)); });
-    $('tr.d').each(function () { d.push(base.index(this)); });
+    $('tr.y').each(function () { y.push(base.index($(this))); });
+    $('tr.m').each(function () { m.push(base.index($(this))); });
+    $('tr.d').each(function () { d.push(base.index($(this))); });
     y.reverse();
     m.reverse();
     d.reverse();
@@ -60,8 +58,8 @@
     }
 
     buf = $(buf);
-    $('#update-table > tbody').html(buf);
-    $('#blog-table > tbody').html(buf);
+    $('#update-table').children('tbody').html(buf);
+    $('#blog-table').children('tbody').html(buf);
 
     sw = $(this);
     if (sw.html() === '▲') {

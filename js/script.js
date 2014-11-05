@@ -17,12 +17,16 @@
 
 (function () {
   'use strict';
-  var pubdate, moddate;
-  pubdate = $('#pubdate > *:nth-child(2)').html();
-  moddate = $('#moddate > *:nth-child(2)').html();
-  if (pubdate !== undefined && moddate !== undefined) {
-    if (pubdate === moddate) {
-      $('#moddate').css('display', 'none');
+
+  var pubdate, moddate, pubhtml, modhtml;
+  pubdate = $('#pubdate');
+  moddate = $('#moddate');
+  pubhtml = $(pubdate.children().eq(1)).html();
+  modhtml = $(moddate.children().eq(1)).html();
+
+  if (pubhtml !== undefined && modhtml !== undefined) {
+    if (pubhtml === modhtml) {
+      moddate.css('display', 'none');
     }
   }
 }());
