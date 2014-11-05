@@ -5,7 +5,7 @@
     var main, wrapper;
     data = $(data);
 
-    $('title').append(' - ' + data.filter('title').text());
+    $('title').append(' - ' + data.filter('title').html());
 
     main = $('main');
     wrapper = data.filter('#wrapper');

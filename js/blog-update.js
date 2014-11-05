@@ -58,8 +58,8 @@
     }
 
     buf = $(buf);
-    $('#update-table').children('tbody').html(buf);
-    $('#blog-table').children('tbody').html(buf);
+    $('#update-table').children('tbody').empty().append(buf);
+    $('#blog-table').children('tbody').empty().append(buf);
 
     sw = $(this);
     if (sw.html() === '▲') {
