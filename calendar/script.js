@@ -6,6 +6,18 @@
   y = date.getFullYear();
 
   (function () {
+    function addYear(elm, y) {
+      var text;
+      elm = $(elm);
+      text = elm.text() + ' (' + y + '年)';
+      elm.empty().append(text);
+    }
+
+    addYear('title', y);
+    addYear('h2', y);
+  }());
+
+  (function () {
     var m, buf, holidays, t, days, i;
 
     function ymd(y, m, d) {
@@ -121,14 +133,7 @@
 
     t = [[], [], [], [], [], [], []];
     buf.find('tr').not('thead > tr:nth-child(1)').children().each(function (i) {
-      i = i % 7;
-      if (i === 0) { t[0].push(this); }
-      if (i === 1) { t[1].push(this); }
-      if (i === 2) { t[2].push(this); }
-      if (i === 3) { t[3].push(this); }
-      if (i === 4) { t[4].push(this); }
-      if (i === 5) { t[5].push(this); }
-      if (i === 6) { t[6].push(this); }
+      t[i % 7].push(this);
     });
     days = [
       'sunday',    // 0
@@ -192,17 +197,5 @@
     buf.find('#' + ymd(date.getFullYear(), date.getMonth() + 1, date.getDate())).addClass('today');
 
     $('#calendar').empty().append(buf);
-  }());
-
-  (function () {
-    function addYear(elm, y) {
-      var text;
-      elm = $(elm);
-      text = elm.text() + ' (' + y + '年)';
-      elm.empty().append(text);
-    }
-
-    addYear('title', y);
-    addYear('h2', y);
   }());
 }());
