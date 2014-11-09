@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>カレンダ</title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      #calendar {
+        text-align: center;
+      }
+      #calendar > div {
+        display: inline-block;
+        margin: 0px 3px;
+      }
+      #calendar > div > table {
+        width: 200px;
+        margin: 0;
+        border-collapse: collapse;
+        border: 2px solid #aaaaaa;
+      }
+      #calendar > div > table tr > * {
+        text-align: center;
+        border: 1px solid #aaaaaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <main>
+        <article>
+          <header>
+            <h2>カレンダ</h2>
+            <table id="pageinfo">
+              <tbody>
+                <tr id="pubdate">
+                  <th>公開日:</th>
+                  <td><time datetime="2014-11-09">2014年11月9日</time></td>
+                </tr>
+                <tr id="moddate">
+                  <th>最終更新日:</th>
+                  <td><time datetime="2014-11-09">2014年11月9日</time></td>
+                </tr>
+              </tbody>
+            </table>
+          </header>
+          <div class="main">
+            <p>
+              JavaScriptで実装した年間カレンダです．<br />
+              現在のところ，表示以外の機能はありません．<br />
+            </p>
+            <div id="calendar"></div>
+          <!-- /.main --></div>
+        </article>
+      </main>
+    <!-- /#wrapper --></div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/calendar/script.js" defer></script>
+    <script src="/js/script.js" defer></script>
+  </body>
+</html>
