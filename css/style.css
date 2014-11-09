@@ -40,12 +40,14 @@ article  > header
 
 table {
   margin-left: 1em;
+  /*
   border-collapse: separate;
   border-spacing: 2px 2px;
+  */
 }
 
 table tr > * {
-  padding: 1px;
+  padding: 2px;
 }
 
 table tr > th {
