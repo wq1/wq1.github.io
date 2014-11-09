@@ -78,18 +78,10 @@ h3 {
 }
 
 
-.bg-red {
-  background-color: #f8cbcb;
-}
-.bg-green {
-  background-color: #a6f3a6;
-}
-.bg-red2 {
-  background-color: #ffecec;
-}
-.bg-green2 {
-  background-color: #eaffea;
-}
+.bg-red    { background-color: #f8cbcb; }
+.bg-green  { background-color: #a6f3a6; }
+.bg-red2   { background-color: #ffecec; }
+.bg-green2 { background-color: #eaffea; }
 
 
 /* Flexbox
