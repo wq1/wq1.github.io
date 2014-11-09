@@ -23,6 +23,17 @@
         text-align: center;
         border: 1px solid #aaaaaa;
       }
+      #calendar > div > table .today {
+        font-weight: bold;
+      }
+      #calendar > div > table .saturday {
+        color: #0000ff;
+      }
+      #calendar > div > table .sunday,
+      #calendar > div > table .holiday
+      {
+        color: #ff0000;
+      }
     </style>
   </head>
   <body>
@@ -47,7 +58,7 @@
           <div class="main">
             <p>
               JavaScriptで実装した年間カレンダです．<br />
-              現在のところ，表示以外の機能はありません．<br />
+              現在のところ，休日表示以外の機能はありません．<br />
             </p>
             <div id="calendar"></div>
           <!-- /.main --></div>
