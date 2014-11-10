@@ -25,14 +25,12 @@
     }
 
     function calendar(y, m) {
-      var html, days, u, firstDay, lengthMonth, col, d;
-      html = '<table>';
+      var html, days, u, firstDay, lengthMonth, row, d;
 
       y = Number(y);
       m = Number(m);
 
-      html += '<thead>';
-      html += '<tr><th colspan=7>' + m + '月' + '</th></tr>';
+      html = '<table><thead><tr><th colspan=7>' + m + '月' + '</th></tr>';
 
       days = [
         '日', // Sunday
@@ -48,10 +46,7 @@
       for (u = 0; u <= 6; u += 1) {
         html += '<th>' + days[u] + '</th>';
       }
-      html += '</tr>';
-
-      html += '</thead>';
-      html += '<tbody>';
+      html += '</tr></thead><tbody>';
 
       firstDay = new Date(y, m - 1, 1).getDay();
       u = 0;
@@ -79,7 +74,7 @@
         lengthMonth[1] = 29; // leap year
       }
 
-      col = 0;
+      row = 0;
       for (d = 1; d <= lengthMonth[m - 1]; d += 1) {
         if (u === 0) {
           html += '<tr>';
@@ -88,7 +83,7 @@
         if (u === 6) {
           u = 0;
           html += '</tr>';
-          col += 1;
+          row += 1;
         } else {
           u += 1;
         }
@@ -98,10 +93,10 @@
           html += '<td>&nbsp;</td>';
         }
         html += '</tr>';
-        col += 1;
+        row += 1;
       }
 
-      for (1; col < 6; col += 1) {
+      for (1; row < 6; row += 1) {
         html += '<tr>';
         for (u = 1; u <= 7; u += 1) {
           html += '<td>&nbsp;</td>';
@@ -109,8 +104,7 @@
         html += '</tr>';
       }
 
-      html += '</tbody>';
-      html += '</table>';
+      html += '</tbody></table>';
 
       html = $(html);
       return html;
