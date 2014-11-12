@@ -7,10 +7,10 @@
 
   (function () {
     function addYear(elm, y) {
-      var text;
+      var txt;
       elm = $(elm);
-      text = elm.text() + ' (' + y + '年)';
-      elm.empty().append(text);
+      txt = elm.text() + ' (' + y + '年)';
+      elm.empty().append(txt);
     }
 
     addYear('title', y);
@@ -18,19 +18,16 @@
   }());
 
   (function () {
-    var m, buf, holidays, t, days, i;
+    var buf, i, t, holidays, days;
 
     function ymd(y, m, d) {
       return y + '-' + ('0' + m).slice(-2) + '-' + ('0' + d).slice(-2);
     }
 
     function calendar(y, m) {
-      var html, days, u, firstDay, lengthMonth, row, d;
-
+      var days, html, u, firstDay, lengthMonth, row, d;
       y = Number(y);
       m = Number(m);
-
-      html = '<table><thead><tr><th colspan=7>' + m + '月' + '</th></tr>';
 
       days = [
         '日', // Sunday
@@ -42,7 +39,7 @@
         '土'  // Saturday
       ];
 
-      html += '<tr>';
+      html = '<table><thead><tr><th colspan=7>' + m + '月' + '</th></tr><tr>';
       for (u = 0; u <= 6; u += 1) {
         html += '<th>' + days[u] + '</th>';
       }
@@ -56,6 +53,7 @@
           html += '<td>&nbsp;</td>';
         }
       }
+
       lengthMonth = [
         31, //  1st
         28, //  2nd
@@ -82,28 +80,28 @@
         html += '<td id="' + ymd(y, m, d) + '">' + d + '</td>';
         if (u === 6) {
           u = 0;
-          html += '</tr>';
           row += 1;
+          html += '</tr>';
         } else {
           u += 1;
         }
       }
+
       if (u !== 0) {
         for (1; u <= 6; u += 1) {
           html += '<td>&nbsp;</td>';
         }
-        html += '</tr>';
+        u = 0;
         row += 1;
+        html += '</tr>';
       }
-
       for (1; row < 6; row += 1) {
         html += '<tr>';
-        for (u = 1; u <= 7; u += 1) {
+        for (u = 0; u <= 6; u += 1) {
           html += '<td>&nbsp;</td>';
         }
         html += '</tr>';
       }
-
       html += '</tbody></table>';
 
       html = $(html);
@@ -120,15 +118,19 @@
     }
 
     buf = [];
-    for (m = 1; m <= 12; m += 1) {
-      buf.push($('<div>').append(calendar(y, m))[0]);
+    for (i = 1; i <= 12; i += 1) {
+      buf.push($('<div>').append(calendar(y, i))[0]);
     }
     buf = $(buf);
 
-    t = [[], [], [], [], [], [], []];
+    t = [];
+    for (i = 0; i <= 6; i += 1) {
+      t.push([]);
+    }
     buf.find('tr').not('thead > tr:nth-child(1)').children().each(function (i) {
       t[i % 7].push(this);
     });
+
     days = [
       'sunday',    // 0
       'monday',    // 1
@@ -171,11 +173,11 @@
       if (this.toString() === [t[0], t[1] + 2].toString()) {
         holidays.push([m, d - 1]); // 国民の休日
       }
-      t = this;
-
       if (new Date(y, m - 1, d).getDay() === 0) {
         holidays.push([m, d + 1]); // 振替休日
       }
+
+      t = this;
     });
 
     if (new Date(y, 5 - 1, 5).getDay() <= 3) {
