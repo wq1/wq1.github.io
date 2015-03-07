@@ -79,6 +79,12 @@ h3 {
   border-bottom: 1px solid #aaaaaa;
 }
 
+a {
+  text-decoration:none;
+}
+a:hover {
+  text-decoration:underline;
+}
 
 .bg-red    { background-color: #f8cbcb; }
 .bg-green  { background-color: #a6f3a6; }
