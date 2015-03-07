@@ -89,7 +89,7 @@ a:hover {
 a[href^="http://"],
 a[href^="https://"],
 a[href^="//"] {
-  background: url(../img/link-external.svg) no-repeat 100% 50%;
+  background: url(/img/link-external.svg) no-repeat 100% 50%;
   background-size: 11px 11px;
   padding-right: 15px;
   margin-right: 4px;
