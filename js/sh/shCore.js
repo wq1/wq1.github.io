@@ -45,7 +45,7 @@ var sh = {
 		'gutter' : true,
 		
 		/** Enables or disables toolbar. */
-		'toolbar' : true,
+		'toolbar' : false,
 		
 		/** Enables quick code copy and paste from double click. */
 		'quick-code' : true,
@@ -63,7 +63,7 @@ var sh = {
 	},
 	
 	config : {
-		space : '&nbsp;',
+		space : ' ',
 		
 		/** Enables use of <SCRIPT type="syntaxhighlighter" /> tags. */
 		useScriptTags : true,
@@ -1460,7 +1460,7 @@ sh.Highlighter.prototype = {
 			line = trim(line);
 			
 			if (line.length == 0)
-				line = sh.config.space;
+				line = '\n';
 			
 			html += this.getLineHtml(
 				i,
